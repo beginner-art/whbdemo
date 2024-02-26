@@ -11,6 +11,6 @@ import java.util.List;
 @Mapper
 @Transactional
 public interface SearchStatisticDao extends BaseMapper<SearchStatistic> {
-    @Select("SELECT search_query as searchQuery, COUNT(*) as count FROM search_statistics WHERE DATE(search_timestamp) = CURDATE() GROUP BY search_query")
+    @Select("SELECT search_query as searchQuery, COUNT(*) as count  FROM search_statistics  WHERE DATE(search_timestamp) BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE() GROUP BY search_query;")
     List<SearchStatistic> countTodaySearchKeywords();
 }

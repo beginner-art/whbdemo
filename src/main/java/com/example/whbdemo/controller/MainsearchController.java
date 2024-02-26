@@ -28,7 +28,7 @@ public class MainsearchController {
         searchRecord.setClickedproductId(clickedproductId);
         searchRecordDao.insertSearchRecord(searchRecord);
         return new Result(Code.SAVE_OK , searchQuery);
-    }
+    }   
 
 
 
