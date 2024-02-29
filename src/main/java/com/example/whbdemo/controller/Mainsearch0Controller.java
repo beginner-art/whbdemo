@@ -22,6 +22,7 @@ public class Mainsearch0Controller {
     private SearchStatisticDao searchStatisticDao;
     @GetMapping("/today-keywords")
     public Result todayKeywords() {
+
         List<SearchStatistic> searchCount = searchStatisticDao.countTodaySearchKeywords();
         Integer code = Code.GET_OK;
         String msg = "Success";

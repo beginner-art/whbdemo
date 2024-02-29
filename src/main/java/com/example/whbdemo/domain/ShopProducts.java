@@ -16,6 +16,7 @@ public class ShopProducts {
     private String productName; // 商品名字
     private BigDecimal price; // 价格，使用BigDecimal类型以存储精确的小数
     private Integer quantity; // 数量，并设置默认值为0（在Java中，基本数据类型的默认值为0，但对于对象类型如Integer，其默认值为null。所以如果你想要确保它总是有一个值，你需要在创建对象时显式地设置它。）
-
+    private String productImage;
+    private String productBrand;
 
 }
