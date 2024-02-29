@@ -40,10 +40,10 @@ public class UserSecurity implements UserDetails {
         return user.getUsername();
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return user.getDeleted().equals(0);
-    }
+        @Override
+        public boolean isAccountNonExpired() {
+            return user.getDeleted().equals(0);
+        }
 
     @Override
     public boolean isAccountNonLocked() {
