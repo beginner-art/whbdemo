@@ -2,8 +2,9 @@ package com.example.whbdemo.controller;
 
 import com.example.whbdemo.dao.ShopProductsDao;
 import com.example.whbdemo.domain.ProductNameRequest;
-import com.example.whbdemo.domain.ShopProducts;
 
+import com.example.whbdemo.domain.ShopProducts;
+import org.apache.ibatis.annotations.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import java.util.Map;
 @Transactional
 @RequestMapping("/products")
 public class ShopProductsController {
-    private static final Logger logger = LoggerFactory.getLogger(MainsearchController.class);
 
     @Autowired
     private ShopProductsDao shopProductsDao;
@@ -32,9 +32,29 @@ public class ShopProductsController {
         return new Result(Code.SAVE_OK , responseBody);
     }
 
-    @GetMapping
-    public Result mainmsg(@RequestParam String productName){`
+    @GetMapping("/mainmsg")  //渲染商品页面
+    public Result mainmsg(@RequestParam String productName){
+        List<ShopProducts> productsMsg = shopProductsDao.mainProductsMsg(productName);
+        return  new Result(Code.SAVE_OK , productsMsg);
+
     }
+
+    @GetMapping
+    public Result allmsg(){
+        List<ShopProducts> productsAll = shopProductsDao.allProductsMsg();
+        return  new Result(Code.SAVE_OK , productsAll);
+    }
+
+
+
+//    @PostMapping("/main0msg")
+//    public Result main0msg(@RequestBody ShopProducts productsMsg){
+//        if (productsMsg.getProductBrand()!=""){
+//
+//        }
+//        System.out.println(productsMsg.getProductBrand());
+//        return new Result(Code.SAVE_OK , productsMsg.getProductBrand());
+//    }
 
 
 }
