@@ -14,7 +14,7 @@ public interface ShopProductsDao extends BaseMapper<ShopProducts> {
 
     List<String> searchProductsByName(String productName);
 
-    @Select("SELECT product_name,category, type, product_brand FROM products WHERE product_name LIKE CONCAT('%', #{productName}, '%') LIMIT 20;")
+    @Select("SELECT * FROM products WHERE product_name LIKE CONCAT('%', #{productName}, '%') LIMIT 20;")
     @Results({
             @Result(column="product_name", property="productName"),
             @Result(column="category", property="category"),

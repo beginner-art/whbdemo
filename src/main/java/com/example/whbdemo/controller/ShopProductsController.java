@@ -32,15 +32,19 @@ public class ShopProductsController {
         return new Result(Code.SAVE_OK , responseBody);
     }
 
-    @GetMapping("/mainmsg")  //渲染商品页面
-    public Result mainmsg(@RequestParam String productName){
-        List<ShopProducts> productsMsg = shopProductsDao.mainProductsMsg(productName);
-        return  new Result(Code.SAVE_OK , productsMsg);
+    @PostMapping("/mainmsg")  //渲染商品页面
+    public Result mainmsg(@RequestBody ShopProducts productName){
+
+        List<ShopProducts> productsMsg = shopProductsDao.mainProductsMsg(productName.getProductName());
+        Map<String, Object> responseMsg = new HashMap<>();
+        responseMsg.put("Rows", productsMsg);
+
+        return  new Result(Code.SAVE_OK , responseMsg);
 
     }
 
-    @GetMapping
-    public Result allmsg(){
+    @GetMapping("/all")
+    public Result allmsg(@RequestBody ShopProducts productName){
         List<ShopProducts> productsAll = shopProductsDao.allProductsMsg();
         return  new Result(Code.SAVE_OK , productsAll);
     }

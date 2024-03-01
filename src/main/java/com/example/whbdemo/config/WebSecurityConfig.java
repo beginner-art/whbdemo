@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable(); //关闭csrf
         http.formLogin().successHandler((HttpServletRequest request, HttpServletResponse response, Authentication authentication) -> {
                     User user = ((UserSecurity) authentication.getPrincipal()).getUser();
+
                     String token = TokenUtil.createToken(user);
                     Result httpResult = new Result(Code.LOGIN_OK, new LoginResponse(token, user), "登录成功");
                     String responseJson = objectMapper.writeValueAsString(httpResult);

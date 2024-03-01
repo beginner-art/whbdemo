@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    @TableId(value = "user_id")
+    @TableId(value = "account")
     private String user_id;
     private String account;
     private String username;
