@@ -25,8 +25,10 @@ public interface ShopProductsDao extends BaseMapper<ShopProducts> {
 
     @Select("SELECT * FROM products LIMIT 20;")
     List<ShopProducts> allProductsMsg();
-
-
+    @Select("SELECT * FROM products LIMIT 20;")
+    List<ShopProducts> allProductsMsg0();
+    @Insert("INSERT INTO products (category, type, product_name, price, quantity, product_image,product_brand) VALUES(#{category}, #{type}, #{productName}, #{price}, #{quantity}, #{productImage},#{productBrand})")
+    int istProductsMsg(ShopProducts shopProducts);
 
 }
 

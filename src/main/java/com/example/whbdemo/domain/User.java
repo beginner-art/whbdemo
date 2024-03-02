@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    @TableId(value = "account")
-    private String user_id;
+    @TableId(value = "userId")
+    private String userId;
     private String account;
     private String username;
     private String password;
-    private String phone_number;
+    private String phoneNumber;
     private String role;
     private Integer points;
     //逻辑删除,1标记删除，0未删除

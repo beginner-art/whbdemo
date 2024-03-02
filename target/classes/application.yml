@@ -21,3 +21,6 @@ mybatis-plus:
 
 server:
   port: 8081
+app:
+  upload:
+    dir: C:/Users/admin/Desktop/test

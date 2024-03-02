@@ -35,11 +35,19 @@ public class ShopProductsController {
     @PostMapping("/mainmsg")  //渲染商品页面
     public Result mainmsg(@RequestBody ShopProducts productName){
 
-        List<ShopProducts> productsMsg = shopProductsDao.mainProductsMsg(productName.getProductName());
-        Map<String, Object> responseMsg = new HashMap<>();
-        responseMsg.put("Rows", productsMsg);
+        if (productName.getProductName()!=null){
+            List<ShopProducts> productsMsg = shopProductsDao.mainProductsMsg(productName.getProductName());
 
-        return  new Result(Code.SAVE_OK , responseMsg);
+            Map<String, Object> responseMsg = new HashMap<>();
+            responseMsg.put("Rows", productsMsg);
+            return  new Result(Code.SAVE_OK , responseMsg);
+        }else {
+            List<ShopProducts> productsMsg = shopProductsDao.allProductsMsg0();
+            Map<String, Object> responseMsg = new HashMap<>();
+            responseMsg.put("Rows", productsMsg);
+            return  new Result(Code.SAVE_OK , responseMsg);
+        }
+
 
     }
 
