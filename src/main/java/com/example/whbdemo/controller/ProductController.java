@@ -1,5 +1,6 @@
 package com.example.whbdemo.controller;
 
+import com.example.whbdemo.domain.Product;
 import com.example.whbdemo.domain.ShopProducts;
 import com.example.whbdemo.util.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,30 +18,24 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadProductImage(@RequestParam("productImage") MultipartFile productImage,
-                                                @RequestParam("productName") String productName,
-                                                @RequestParam("productBrand") String productBrand,
-                                                @RequestParam("type") String type,
-                                                @RequestParam("price") BigDecimal price,
-                                                @RequestParam("quantity") Integer quantity,
-                                                @RequestParam("category") String category) {
+    public ResponseEntity<?> uploadProductImage(@RequestBody Product product) {
         try {
             // 处理上传的文件  
-            if (productImage.isEmpty()) {
+            if (product.getProductImage().isEmpty()) {
                 return ResponseEntity.badRequest().body("请选择一个文件上传");
             }
 
             // 保存文件到本地  
-            String imagePath = productService.saveProductImage(productImage);
+            String imagePath = productService.saveProductImage(product.getProductImage());
 
             ShopProducts shopProducts = new ShopProducts();
-            shopProducts.setProductBrand(productBrand);
+            shopProducts.setProductBrand(product.getProductBrand());
             shopProducts.setProductImage(imagePath);
-            shopProducts.setProductName(productName);
-            shopProducts.setType(type);
-            shopProducts.setPrice(price);
-            shopProducts.setCategory(category);
-            shopProducts.setQuantity(quantity);
+            shopProducts.setProductName(product.getProductName());
+            shopProducts.setType(product.getProductBrand());
+            shopProducts.setPrice(product.getPrice());
+            shopProducts.setCategory(product.getCategory());
+            shopProducts.setQuantity(product.getQuantity());
             // 更新数据库中的产品图片路径  
             productService.updateProductImage(shopProducts);
 

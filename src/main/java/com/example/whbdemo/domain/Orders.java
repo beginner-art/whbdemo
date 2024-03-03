@@ -1,13 +1,14 @@
 
 package com.example.whbdemo.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
 public class Orders {
-
+    @TableId(value = "orderId")
     private Integer orderId; // 对应order_id，但在Java中通常使用驼峰命名法
     private Integer userId; // 对应user_id
     private Integer productId; // 对应product_id

@@ -38,4 +38,16 @@ public class OrdersController {
         List<ProductOrderCount> selectOrder = ordersDao.statistic();
         return new Result(Code.SAVE_OK , selectOrder);
     }
+
+    @PostMapping("/sellermsg")
+    public Result sellermsg(@RequestBody User user){
+        List<Orders> selectsellerOrder = ordersDao.selectsellerOrder(user.getUsername());
+        return new Result(Code.SAVE_OK , selectsellerOrder);
+    }
+
+    @PostMapping("/sellership")
+    public Result sellership(@RequestBody Orders orders){
+        ordersDao.updatesellerOrder(orders.getOrderId());
+        return new Result(Code.SAVE_OK , "更新成功");
+    }
 }

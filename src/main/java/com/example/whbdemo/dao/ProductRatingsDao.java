@@ -23,6 +23,6 @@ public interface ProductRatingsDao extends BaseMapper<ProductRatings> {
     @Select("SELECT *  FROM orders WHERE user_id = #{userId} ORDER BY purchase_time DESC LIMIT 5;")
     List<Orders> recommendProductsForUser(Integer userId);
 
-    @Select("SELECT *  FROM orders ORDER BY purchase_time DESC LIMIT 5;")
+    @Select("WITH RankedOrders AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY purchase_time DESC) AS rn FROM orders)SELECT * FROM RankedOrders WHERE rn = 1 ORDER BY purchase_time DESC LIMIT 5;")
     List<Orders> errorrecommendProducts();
 }

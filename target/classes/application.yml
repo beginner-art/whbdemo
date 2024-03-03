@@ -5,10 +5,15 @@ spring:
     url: jdbc:mysql://localhost:3306/whb_shooping
     username: root
     password: 123456
+  security:
+    user:
+      name: user
+      password: yourpassword
 #    password:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 #    sql-parser-cache: true
 #    sql-parser-config:
 #      enable-sql-parser: true

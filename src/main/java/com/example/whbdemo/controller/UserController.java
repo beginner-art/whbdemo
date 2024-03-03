@@ -19,7 +19,7 @@ public class UserController {
     private UserDao userDao;
 
     @GetMapping("/all")
-    private Result allUser(){
+    public Result allUser(){
         List<User> user =userDao.allusers();
         return new Result(Code.SAVE_OK,user);
 
@@ -40,22 +40,24 @@ public class UserController {
         }
     }
 
-
     @PostMapping("/register")
-    private Result register(@RequestBody User user){
-        return new Result(Code.SAVE_OK,user);
+    public Result register(@RequestBody User user){
+
+        userDao.registeruser(user);
+        return new Result(Code.SAVE_OK,"插入成功");
 
     }
 
     @GetMapping("/logout")
-    private Result logout(@RequestBody User user){
+    public Result logout(@RequestBody User user){
         return new Result(Code.SAVE_OK,user);
 
     }
 
     @PostMapping("/role")
-    private Result role(@RequestBody User user){
-        return new Result(Code.SAVE_OK,user);
+    public Result roleuser(@RequestBody User user){
+        String roleuser= userDao.roleuser(user);
+        return new Result(Code.SAVE_OK,roleuser);
 
     }
 }

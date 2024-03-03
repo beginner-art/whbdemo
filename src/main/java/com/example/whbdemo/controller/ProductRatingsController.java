@@ -31,8 +31,7 @@ public class ProductRatingsController {
 
     @PostMapping("/userrecommend")
     public Result recommendProductsForUser(@RequestBody User user) {
-        if(user.getUserId()!=""){
-
+        if(user.getUserId()!=null){
         List<ProductRatings> allRatings = productRatingsDao.rs();
 
         Map<Integer, Map<Integer, Double>> userRatings = buildUserRatings(allRatings);
